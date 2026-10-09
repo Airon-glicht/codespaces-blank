@@ -1,0 +1,115 @@
+<div class="container">
+
+  <header>
+    <h1>Meu Perfil Acadêmico</h1>
+    <p>Conheça um pouco sobre minha trajetória acadêmica</p>
+
+    <button id="themeBtn">🌙 Tema escuro</button>
+  </header>
+
+  <main>
+
+    <section class="perfil">
+
+      <img
+        src="https://i.pravatar.cc/300"
+        alt="Foto de Airon Santos Soares"
+        class="foto"
+      >
+
+      <div class="informacoes">
+
+        <h2>Airon Santos Soares</h2>
+
+        <p>
+          <strong>Curso:</strong> Ciência da Computação
+        </p>
+
+        <p>
+          Sou estudante de Ciência da Computação, interessado em
+          tecnologia e no desenvolvimento de novos conhecimentos.
+          Gosto de aprender através da prática e explorar diferentes
+          áreas relacionadas ao mundo digital.
+        </p>
+
+        <button id="contatoBtn">
+          Entrar em Contato
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>🎯 Meus Hobbies</h2>
+
+      <div class="hobbies">
+
+        <span>🎬 Editar Vídeo</span>
+
+        <span>📺 Assistir Vídeo</span>
+
+        <span>🎮 Jogar Videogame</span>
+
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>🌐 Rede Social</h2>
+
+      <a
+        href="https://github.com/"
+        target="_blank"
+        class="social"
+      >
+        GitHub
+      </a>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>🕐 Horário atual</h2>
+
+      <p id="relogio">00:00:00</p>
+
+    </section>
+
+     <ul id="lista"></ul>
+
+  </main>
+
+
+  <footer>
+
+    <p>
+      Meu Perfil Acadêmico ©
+      <span id="ano"></span>
+      — Airon Santos Soares
+    </p>
+
+  </footer>
+
+</div>
+<script>
+async function carregarDisciplinas() {
+  const resposta = await fetch("/api/disciplinas");
+  const disciplinas = await resposta.json();
+  const lista = document.getElementById("lista");
+  lista.innerHTML = "";
+  disciplinas.forEach((d) => {
+    const li = document.createElement("li");
+    li.textContent = `${d.nome} (${d.semestre}º semestre)`;
+    lista.appendChild(li);
+  });
+}
+carregarDisciplinas();
+</script>
+
+
